@@ -91,3 +91,12 @@ int main() {
 void clearInputBuffer() {
     while (getchar() != '\n');
 }
+
+// Function to generate random dates
+void generateRandomDate(char *dateBuffer, int dayOffset) {
+    time_t now = time(NULL);
+    struct tm *timeInfo = localtime(&now);
+    timeInfo->tm_mday -= dayOffset; // Subtract dayOffset days
+    mktime(timeInfo); // Normalize the time structure
+    strftime(dateBuffer, 20, "%d-%m-%Y", timeInfo);
+}
