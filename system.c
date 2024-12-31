@@ -117,8 +117,6 @@ void initializeAccounts(struct Account accounts[], int *totalAccounts) {
     }
 }
 
-
-
 // Function to find account index by account number
 int findAccountIndex(const struct Account accounts[], int totalAccounts, int accountNumber) {
     for (int i = 0; i < totalAccounts; i++) {
@@ -162,6 +160,7 @@ void createAccount(struct Account accounts[], int *totalAccounts) {
 
     printf("Account created successfully! Please note your Account Number: %d\n", newAccount.accountNumber);
 }
+
 // Function to deposit money
 void depositMoney(struct Account accounts[], int totalAccounts) {
     int accNum;
@@ -191,7 +190,6 @@ void depositMoney(struct Account accounts[], int totalAccounts) {
 
     printf("Deposit successful! New Balance: %.2f\n", accounts[index].balance);
 }
-
 
 // Function to withdraw money
 void withdrawMoney(struct Account accounts[], int totalAccounts) {
@@ -227,6 +225,7 @@ void withdrawMoney(struct Account accounts[], int totalAccounts) {
 
     printf("Withdrawal successful! New Balance: %.2f\n", accounts[index].balance);
 }
+
 // Function to display all accounts
 void displayAccounts(const struct Account accounts[], int totalAccounts) {
     if (totalAccounts == 0) {
@@ -252,6 +251,7 @@ void applyInterest(struct Account accounts[], int totalAccounts) {
                accounts[i].accountNumber, accounts[i].name, accounts[i].balance);
     }
 }
+
 // Function to get interest rate from the user
 int getInterestRate() {
     int rate;
@@ -262,6 +262,7 @@ int getInterestRate() {
     }
     return rate;
 }
+
 // Function to search for an account
 void searchAccount(const struct Account accounts[], int totalAccounts) {
     int accNum;
