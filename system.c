@@ -277,3 +277,24 @@ void searchAccount(const struct Account accounts[], int totalAccounts) {
     printf("Account Found!\nAccount Number: %d\nName: %s\nBalance: %.2f\nCreation Date: %s\n",
            accounts[index].accountNumber, accounts[index].name, accounts[index].balance, accounts[index].creationDate);
 }
+
+// Function to show last 3 transactions
+void showLastTransactions(const struct Account accounts[], int totalAccounts) {
+    int accNum;
+    printf("Enter Account Number: ");
+    scanf("%d", &accNum);
+
+    int index = findAccountIndex(accounts, totalAccounts, accNum);
+    if (index == -1) {
+        printf("Account not found.\n");
+        return;
+    }
+
+    int count = accounts[index].transactionCount < 3 ? accounts[index].transactionCount : 3;
+    printf("Last %d Transactions:\n", count);
+
+    for (int i = accounts[index].transactionCount - 1, j = 0; j < count; i--, j++) {
+        int transactionIndex = i % MAX_TRANSACTIONS;
+        printf("%s: %.2f\n", accounts[index].transactions[transactionIndex].type, accounts[index].transactions[transactionIndex].amount);
+    }
+}
