@@ -100,3 +100,19 @@ void generateRandomDate(char *dateBuffer, int dayOffset) {
     mktime(timeInfo); // Normalize the time structure
     strftime(dateBuffer, 20, "%d-%m-%Y", timeInfo);
 }
+
+// Function to initialize predefined accounts
+void initializeAccounts(struct Account accounts[], int *totalAccounts) {
+    char *names[] = {"Arohi Karki", "Samir Shrestha", "Saru Magar", "Ganga Pradhan Magar", "Sagar Karki"};
+    float initialBalances[] = {1200.50, 2000.00, 3000.75, 1500.25, 500.00};
+    int dayOffsets[] = {0, 3, 6, 9, 12};
+
+    for (int i = 0; i < 5; i++) {
+        generateRandomDate(accounts[*totalAccounts].creationDate, dayOffsets[i]);
+        accounts[*totalAccounts].accountNumber = i + 1;
+        strcpy(accounts[*totalAccounts].name, names[i]);
+        accounts[*totalAccounts].balance = initialBalances[i];
+        accounts[*totalAccounts].transactionCount = 0;
+        (*totalAccounts)++;
+    }
+}
