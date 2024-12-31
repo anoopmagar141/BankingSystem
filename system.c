@@ -116,3 +116,49 @@ void initializeAccounts(struct Account accounts[], int *totalAccounts) {
         (*totalAccounts)++;
     }
 }
+
+
+
+// Function to find account index by account number
+int findAccountIndex(const struct Account accounts[], int totalAccounts, int accountNumber) {
+    for (int i = 0; i < totalAccounts; i++) {
+        if (accounts[i].accountNumber == accountNumber) {
+            return i;
+        }
+    }
+    return -1; // Account not found
+}
+
+// Function to create a new account
+void createAccount(struct Account accounts[], int *totalAccounts) {
+    if (*totalAccounts >= MAX_ACCOUNTS) {
+        printf("Account limit reached. Cannot create more accounts.\n");
+        return;
+    }
+
+    struct Account newAccount;
+    newAccount.accountNumber = *totalAccounts + 1;
+
+    printf("Enter Name: ");
+    fgets(newAccount.name, sizeof(newAccount.name), stdin);
+    newAccount.name[strcspn(newAccount.name, "\n")] = 0;
+
+    printf("Enter Initial Balance: ");
+    if (scanf("%f", &newAccount.balance) != 1 || newAccount.balance < 0) {
+        printf("Invalid initial balance. Account creation failed.\n");
+        clearInputBuffer();
+        return;
+    }
+    clearInputBuffer();
+
+    time_t now = time(NULL);
+    struct tm *timeInfo = localtime(&now);
+    strftime(newAccount.creationDate, 20, "%d-%m-%Y", timeInfo);
+
+    newAccount.transactionCount = 0;
+
+    accounts[*totalAccounts] = newAccount;
+    (*totalAccounts)++;
+
+    printf("Account created successfully! Please note your Account Number: %d\n", newAccount.accountNumber);
+}
