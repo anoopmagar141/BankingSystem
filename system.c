@@ -262,3 +262,18 @@ int getInterestRate() {
     }
     return rate;
 }
+// Function to search for an account
+void searchAccount(const struct Account accounts[], int totalAccounts) {
+    int accNum;
+    printf("Enter Account Number: ");
+    scanf("%d", &accNum);
+
+    int index = findAccountIndex(accounts, totalAccounts, accNum);
+    if (index == -1) {
+        printf("Account not found.\n");
+        return;
+    }
+
+    printf("Account Found!\nAccount Number: %d\nName: %s\nBalance: %.2f\nCreation Date: %s\n",
+           accounts[index].accountNumber, accounts[index].name, accounts[index].balance, accounts[index].creationDate);
+}
