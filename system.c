@@ -252,3 +252,13 @@ void applyInterest(struct Account accounts[], int totalAccounts) {
                accounts[i].accountNumber, accounts[i].name, accounts[i].balance);
     }
 }
+// Function to get interest rate from the user
+int getInterestRate() {
+    int rate;
+    printf("Enter interest rate: ");
+    while (scanf("%d", &rate) != 1 || rate < 0) {
+        printf("Invalid rate. Please enter a positive number: ");
+        clearInputBuffer();
+    }
+    return rate;
+}
