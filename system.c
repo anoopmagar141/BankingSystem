@@ -86,3 +86,8 @@ int main() {
 
     return 0;
 }
+
+// Function to clear input buffer
+void clearInputBuffer() {
+    while (getchar() != '\n');
+}
