@@ -162,3 +162,32 @@ void createAccount(struct Account accounts[], int *totalAccounts) {
 
     printf("Account created successfully! Please note your Account Number: %d\n", newAccount.accountNumber);
 }
+// Function to deposit money
+void depositMoney(struct Account accounts[], int totalAccounts) {
+    int accNum;
+    float amount;
+
+    printf("Enter Account Number: ");
+    scanf("%d", &accNum);
+
+    int index = findAccountIndex(accounts, totalAccounts, accNum);
+    if (index == -1) {
+        printf("Account not found.\n");
+        return;
+    }
+
+    printf("Enter Deposit Amount: ");
+    if (scanf("%f", &amount) != 1 || amount <= 0) {
+        printf("Invalid deposit amount.\n");
+        clearInputBuffer();
+        return;
+    }
+
+    accounts[index].balance += amount;
+
+    struct Transaction newTransaction = {"Deposit", amount};
+    accounts[index].transactions[accounts[index].transactionCount % MAX_TRANSACTIONS] = newTransaction;
+    accounts[index].transactionCount++;
+
+    printf("Deposit successful! New Balance: %.2f\n", accounts[index].balance);
+}
