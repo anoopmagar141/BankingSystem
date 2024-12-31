@@ -241,3 +241,14 @@ void displayAccounts(const struct Account accounts[], int totalAccounts) {
     }
 }
 
+// Function to apply interest
+void applyInterest(struct Account accounts[], int totalAccounts) {
+    float rate = getInterestRate();
+    printf("Applying %.2f%% interest to all accounts...\n", rate);
+
+    for (int i = 0; i < totalAccounts; i++) {
+        accounts[i].balance += accounts[i].balance * (rate / 100);
+        printf("Account Number: %d, Name: %s, New Balance: %.2f\n",
+               accounts[i].accountNumber, accounts[i].name, accounts[i].balance);
+    }
+}
