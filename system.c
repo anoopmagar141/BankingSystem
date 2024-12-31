@@ -227,3 +227,17 @@ void withdrawMoney(struct Account accounts[], int totalAccounts) {
 
     printf("Withdrawal successful! New Balance: %.2f\n", accounts[index].balance);
 }
+// Function to display all accounts
+void displayAccounts(const struct Account accounts[], int totalAccounts) {
+    if (totalAccounts == 0) {
+        printf("No accounts to display.\n");
+        return;
+    }
+
+    printf("\nDisplaying all accounts:\n");
+    for (int i = 0; i < totalAccounts; i++) {
+        printf("Account Number: %d\nName: %s\nBalance: %.2f\nCreation Date: %s\n\n",
+               accounts[i].accountNumber, accounts[i].name, accounts[i].balance, accounts[i].creationDate);
+    }
+}
+
