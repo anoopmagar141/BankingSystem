@@ -191,3 +191,39 @@ void depositMoney(struct Account accounts[], int totalAccounts) {
 
     printf("Deposit successful! New Balance: %.2f\n", accounts[index].balance);
 }
+
+
+// Function to withdraw money
+void withdrawMoney(struct Account accounts[], int totalAccounts) {
+    int accNum;
+    float amount;
+
+    printf("Enter Account Number: ");
+    scanf("%d", &accNum);
+
+    int index = findAccountIndex(accounts, totalAccounts, accNum);
+    if (index == -1) {
+        printf("Account not found.\n");
+        return;
+    }
+
+    printf("Enter Withdrawal Amount: ");
+    if (scanf("%f", &amount) != 1 || amount <= 0) {
+        printf("Invalid withdrawal amount.\n");
+        clearInputBuffer();
+        return;
+    }
+
+    if (accounts[index].balance < amount) {
+        printf("Insufficient balance.\n");
+        return;
+    }
+
+    accounts[index].balance -= amount;
+
+    struct Transaction newTransaction = {"Withdraw", amount};
+    accounts[index].transactions[accounts[index].transactionCount % MAX_TRANSACTIONS] = newTransaction;
+    accounts[index].transactionCount++;
+
+    printf("Withdrawal successful! New Balance: %.2f\n", accounts[index].balance);
+}
