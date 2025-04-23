@@ -1,4 +1,3 @@
-
 # BankingSystem coded in C.
 
 
