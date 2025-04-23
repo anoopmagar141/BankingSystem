@@ -1,5 +1,6 @@
 # BankingSystem coded in C.
 
+
 (1-5 acc has been reserved try after 6 acc no.) 
 
  out put :
